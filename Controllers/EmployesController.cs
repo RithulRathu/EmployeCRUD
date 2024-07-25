@@ -14,7 +14,8 @@ namespace Employee.Controllers
         // GET: Employes
         public ActionResult Index()
         {
-            return View();
+            List<Employe> emplist = empDbContext.employees.ToList();
+            return View(emplist);
         }
 
         public ActionResult AddEmploye()
