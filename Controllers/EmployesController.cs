@@ -26,10 +26,23 @@ namespace Employee.Controllers
         [HttpPost]
         public ActionResult AddEmploye(Employe emp)
         {
-            if (ModelState.IsValid) {
-                empDbContext.employees.Add(emp);
-                empDbContext.SaveChanges();
-                TempData["AlertMessage"] = "Employe Added Sucessfull...";
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    empDbContext.employees.Add(emp);
+                    empDbContext.SaveChanges();
+                    TempData["AlertSucess"] = "Employe Added Sucessfull...";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["AlertError"] = "Some Think Went To Wrong...";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["AlertError"] = ex.Message;
             }
             return View();
         }
@@ -49,11 +62,26 @@ namespace Employee.Controllers
                 existemploye.Phone = employeupdateddata.Phone;
                 existemploye.Email = employeupdateddata.Email;
                 empDbContext.SaveChanges();
-                TempData["AlertMessage"] = "Employe Updated Sucessfull...";
+                TempData["AlertSucess"] = "Employe Updated Sucessfull...";
             }
             else
             {
-                TempData["AlertMessage"] = "Some Think Went To Wrong...";
+                TempData["AlertError"] = "Some Think Went To Wrong...";
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Delete(int id) {
+            Employe employedata = empDbContext.employees.Find(id);
+            if (employedata != null) {
+                empDbContext.employees.Remove(employedata);
+                empDbContext.SaveChanges();
+                TempData["AlertSucess"] = "Employe  Deleted Sucessfull...";
+            }
+            else
+            {
+                TempData["AlertError"] = "Some Think Went To Wrong...";
             }
             return RedirectToAction("Index");
         }
