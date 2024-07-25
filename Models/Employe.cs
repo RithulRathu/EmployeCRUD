@@ -11,10 +11,11 @@ namespace Employee.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Please Enter Name")]
+        [Required(ErrorMessage ="Please Enter Full Name"), Display(Name = "Full Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage ="Please Enter Phone#")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Please Enter 10 Digit Number")]
         public string Phone {  get; set; }
 
         [Required]

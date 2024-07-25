@@ -1,6 +1,7 @@
 ﻿/* Set padding to keep content from hitting the edges */
 .body-content {
-    margin-top: 15px;
+    margin-top: 5%;
+    margin-bottom:5%;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -17,4 +18,14 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.ec-block{float:left;width:100%;display:block;}
+.ec-content{max-width:500px;margin:0 auto;}
+.ec-contentInner{float:left;width:100%;padding:5%; border:2px solid #eee;border-radius:5px;}
+.ec-bg{background-color:#093074 !important;color:#fff}
+.ec-bg a{color:#fff;}
+.ec-menu{border:1px solid #fff}
+.ec-paddingbtm{padding:3%;}
+@media screen and (max-width:500px) {
+    .btn-100{width:100%;margin-top:15%;}
 }
